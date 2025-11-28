@@ -1,41 +1,29 @@
-const { $ } = require('@wdio/globals')
-const Page = require('./page');
+const { expect } = require("@wdio/globals");
+const Page = require("./page");
 
-/**
- * sub page containing specific selectors and methods for a specific page
- */
-class LoginPage extends Page {
-    /**
-     * define selectors using getter methods
-     */
-    get inputUsername () {
-        return $('#username');
+class Login extends Page {
+    get emailInput() { return $('[data-test="email"]'); }
+    get passwordInput() { return $('[data-test="password"]'); }
+    get submitButton() { return $('[data-test="login-submit"]'); }
+    get errorMessage() { return $('[data-test="login-error"]'); }
+
+    async open() {
+        return super.open('auth/login');
     }
 
-    get inputPassword () {
-        return $('#password');
+    async fillData({ email, password }) {
+        await this.emailInput.setValue(email);
+        await this.passwordInput.setValue(password);
     }
 
-    get btnSubmit () {
-        return $('button[type="submit"]');
+    async submit() {
+        await this.submitButton.click();
     }
 
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to login using username and password
-     */
-    async login (username, password) {
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
-    }
-
-    /**
-     * overwrite specific options to adapt it to page object
-     */
-    open () {
-        return super.open('login');
+    async loginError() {
+        await expect(this.errorMessage).toBeDisplayed();
+        await expect(this.errorMessage).toHaveText('Invalid email or password');
     }
 }
 
-module.exports = new LoginPage();
+module.exports = new Login();
