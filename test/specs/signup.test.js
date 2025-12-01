@@ -22,7 +22,7 @@ describe("User Registration", () => {
         await RegistrationPage.submit();
 
         await browser.waitUntil(
-            async () => (await browser.getUrl()) === 'https://practicesoftwaretesting.com/auth/login', { timeout: 5000 }
+            async () => (await browser.getUrl()) === 'https://practicesoftwaretesting.com/auth/login'
         );
 
         const url = await browser.getUrl();
