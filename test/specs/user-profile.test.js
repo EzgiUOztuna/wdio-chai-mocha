@@ -1,42 +1,30 @@
-const { Given, When, Then } = require("@wdio/cucumber-framework");
 const UserProfile = require('../pageobjects/user-profile.page');
-const { expect, browser } = require("@wdio/globals");
+const { expect } = require('chai');
 
-Given("the user is logged into their account successfully", async () => {
-    await UserProfile.login({
-        email: "test@mail.com",
-        password: "25112025*Epam"
-    });
-});
+describe("User Update Information", () => {
+    it("User updates profile information successfully.", async () => {
+        await UserProfile.login({
+            email: "test@mail.com",
+            password: "25112025*Epam"
+        });
 
-When("the user clicks on the 'Profile' button", async () => {
-    await UserProfile.profilePage();
-});
-
-When("navigates to the 'Profile' page", async () => {
-    await UserProfile.navigateProfilePage();
-    await UserProfile.phoneInput.waitForDisplayed();
-});
-
-When("changes phone number and address", async () => {
-    await UserProfile.change({
-        phoneNumber: "5555555554",
-        street: "Atatürk Caddesi",
-        postalCode: "34000",
-        city: "Istanbul",
-        state: "Marmara",
-        country: "TR"
-    });
-});
-
-When("clicks on the 'Update Profile' button", async () => {
-    await UserProfile.updateProfileSubmit();
-});
-
-Then("a confirmation message should appear", async () => {
-    await UserProfile.alertMessage();
-});
-
-Then("the updated information should be visible on the profile page", async () => {
-    await expect(browser).toHaveUrl('https://practicesoftwaretesting.com/account/profile');
+        await UserProfile.profilePage();
+        await UserProfile.navigateProfilePage();
+        await UserProfile.phoneInput.waitForDisplayed();
+        await UserProfile.change({
+            phoneNumber: "5555555554",
+            street: "Atatürk Caddesi",
+            postalCode: "34000",
+            city: "Istanbul",
+            state: "Marmara",
+            country: "TR"
+        });
+        await UserProfile.updateProfileSubmit();
+        await UserProfile.alertMessage();
+        await browser.waitUntil(
+            async () => (await browser.getUrl()) === 'https://practicesoftwaretesting.com/account/profile', { timeout: 10000 }
+        );
+        const url = await browser.getUrl();
+        expect(url).to.equal('https://practicesoftwaretesting.com/account/profile');
+    })
 });
