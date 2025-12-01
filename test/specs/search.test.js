@@ -1,22 +1,11 @@
-const { Given, When, Then } = require("@wdio/cucumber-framework");
 const Search = require("../pageobjects/search.page");
 
-Given("the user is on the home page", async () => {
-    await Search.open();
-});
-
-When("the user clicks on the Search bar", async () => {
-    await Search.clickSearchInput();
-});
-
-When("enters the exact product name into the search bar", async () => {
-    await Search.searchForProduct('Hammer');
-});
-
-When("clicks on the 'Search' button", async () => {
-    await Search.submitSearchBtn();
-});
-
-Then("the product matching the exact name should be displayed in the search results", async () => {
-    await Search.verifyProductInResults('Hammer');
+describe("Find Product for Exact Name", () => {
+    it("User searches for a product by its exact name", async () => {
+        await Search.open();
+        await Search.clickSearchInput();
+        await Search.searchForProduct('Hammer');
+        await Search.submitSearchBtn();
+        await Search.verifyProductInResults('Hammer');
+    });
 });
