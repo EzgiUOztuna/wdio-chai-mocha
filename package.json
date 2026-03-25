@@ -10,6 +10,7 @@
     "mocha": "^11.7.5"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.js"
+    "wdio": "wdio run ./wdio.conf.js",
+    "test": "wdio run ./src/configs/wdio.conf.js"
   }
 }

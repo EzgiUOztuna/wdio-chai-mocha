@@ -1,27 +1,35 @@
-const { expect } = require("@wdio/globals");
+const { expect, browser } = require("@wdio/globals");
 const Page = require("./page");
 
 class ProductDetails extends Page {
-    get addToCart() { return $('[data-test="add-to-cart"]'); }
-    get successToast() { return $('#toast-container'); }
-    get basketCounter() { return $('[data-test="cart-quantity"]'); }
+    //get successToast() { return $('#toast-container'); }
 
-    async open() {
-        return super.open('product/01KB2FH1GCJ9KQM30564ZVSM97');
+    async goToHomePage() {
+        await browser.url('https://practicesoftwaretesting.com/');
+    }
+
+    async clickProduct() {
+        const container = await $('app-overview');
+        const productLink = await container.$$('div.container a');
+        await productLink[2].click();
+
     }
 
     async clickCartButton() {
-        await this.addToCart.click();
+        const addToCartButton = await $('[data-test="add-to-cart"]');
+        await addToCartButton.click();
     }
 
     async successMessage() {
-        await expect(this.successToast).toBeDisplayed();
-        await expect(this.successToast).toHaveText('Product added to shopping cart.');
+        const successToast = $('#toast-container');
+        await expect(successToast).toBeDisplayed();
+        await expect(successToast).toHaveText('Product added to shopping cart.');
     }
 
     async counter() {
-        const oldValue = parseInt(await this.basketCounter.getText());
-        const newValue = parseInt(await this.basketCounter.getText());
+        const basketCounter = await $('[data-test="cart-quantity"]');
+        const oldValue = parseInt(await basketCounter.getText());
+        const newValue = parseInt(await basketCounter.getText());
 
         await expect(newValue).toEqual(oldValue + 1);
     }

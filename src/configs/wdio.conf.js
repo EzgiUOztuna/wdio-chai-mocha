@@ -21,7 +21,7 @@ exports.config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        './test/specs/**/*.js'
+        '../tests/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -125,7 +125,6 @@ exports.config = {
     // specFileRetriesDelay: 0,
     //
     // Whether or not retried spec files should be retried immediately or deferred to the end of the queue
-    // specFileRetriesDeferred: false,
     //
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
