@@ -1,5 +1,5 @@
 const Page = require("./page");
-const { browser } = require("@wdio/globals");
+const { expect, browser } = require("@wdio/globals");
 
 class Checkout extends Page {
     /*get emailInput() { return $('[data-test="email"]'); }
@@ -20,14 +20,15 @@ class Checkout extends Page {
     get paymentSuccess() { return $('[data-test="payment-success-message"]'); }*/
 
     async goToCheckout() {
+        const cartButton = await $('[data-test="nav-cart"]');
+        await cartButton.click();
         await browser.url("https://practicesoftwaretesting.com/checkout");
     }
 
     async clickProceed() {
-        const proceedButton = await $('//app-checkout//button[contains(@class,"btn-success")]');
+        const proceedButton = await $('button.btn.btn-success');
         await proceedButton.waitForExist();
-        await expect(proceedButton).toHaveTextContaining('Proceed');
-        //await proceedButton.click();
+        await proceedButton.click();
     }
     /*
         async login({ email, password }) {
