@@ -40,7 +40,6 @@ class RegistrationPage extends Page {
         await this.address(data);
     }
 
-
     async submit() {
         await this.submitButton.click();
     }
