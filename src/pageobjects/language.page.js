@@ -1,12 +1,13 @@
 class Language {
     get selectLanguage() { return $('[data-test="language-select"]'); }
     get trLang() { return $('[data-test="lang-tr"]'); }
-    getHome() { return $('[data-test="nav-home"]'); }
-    getCategories() { return $('[data-test="nav-categories"]'); }
+    get homeButton() { return $('[data-test="nav-home"]'); }
+    get categoriesButton() { return $('[data-test="nav-categories"]'); }
 
 
-    async open() {
-        await browser.url('https://practicesoftwaretesting.com/');
+    async goToHomePage() {
+        await this.homeButton.click();
+        await expect(browser).toHaveUrl('https://practicesoftwaretesting.com/');
     }
 
     async openDropdown() {
@@ -20,8 +21,8 @@ class Language {
     }
 
     async verifyTurkish() {
-        await expect(this.getHome).toHaveText(expect.stringContaining('Anasayfa'));
-        await expect(this.getCategories).toHaveText(expect.stringContaining('Kategoriler'));
+        await expect(this.homeButton).toHaveText(expect.stringContaining('Anasayfa'));
+        await expect(this.categoriesButton).toHaveText(expect.stringContaining('Kategoriler'));
     }
 }
 
