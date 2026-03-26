@@ -20,6 +20,7 @@ class UserProfile extends Page {
         await this.emailInput.setValue(email);
         await this.passwordInput.setValue(password);
         await this.submitButton.click();
+        await expect(browser).toHaveUrl("https://practicesoftwaretesting.com/account")
     }
 
     async profilePage() {
