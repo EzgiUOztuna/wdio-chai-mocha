@@ -20,6 +20,7 @@ class Login extends Page {
         await this.open();
         await this.fillData({ email, password });
         await this.submit();
+        await expect(browser).toHaveUrl('https://practicesoftwaretesting.com/account');
     }
 
     async submit() {
