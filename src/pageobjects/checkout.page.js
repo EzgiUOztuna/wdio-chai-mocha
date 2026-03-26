@@ -28,26 +28,8 @@ class Checkout extends Page {
         await proceedButton.click();
     }
 
-    async continueGuest({ email, firstName, lastName }) {
-        await expect(browser).toHaveUrl("https://practicesoftwaretesting.com/checkout");
-
-        await $('a[href="#guest-tab"]').click();
-
-        const emailInput = await $('[data-test="guest-email"]');
-        await emailInput.setValue(email);
-
-        const firstNameInput = await $('[data-test="guest-first-name"]');
-        await firstNameInput.setValue(firstName);
-
-        const lastNameInput = await $('[data-test="guest-last-name"]');
-        await lastNameInput.setValue(lastName);
-
-        const submitButton = await $('[data-test="guest-submit"]');
-        await submitButton.click();
-    }
-
     async clickProceed2() {
-        const proceedButton = await $('button[data-test="proceed-2-guest"]');
+        const proceedButton = await $('button[data-test="proceed-2"]');
         await proceedButton.waitForExist();
         await proceedButton.click();
     }
