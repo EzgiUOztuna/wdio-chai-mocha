@@ -16,6 +16,12 @@ class Login extends Page {
         await this.passwordInput.setValue(password);
     }
 
+    async login(email, password) {
+        await this.open();
+        await this.fillData({ email, password });
+        await this.submit();
+    }
+
     async submit() {
         await this.submitButton.click();
     }
