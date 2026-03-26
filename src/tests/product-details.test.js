@@ -3,7 +3,7 @@ const productDetailsPage = require("../pageobjects/product-details.page");
 
 describe("Add Product to the Basket", () => {
     beforeEach(async () => {
-        await loginPage.login("user@example.com", "Password123!");
+        await loginPage.login("customer2@practicesoftwaretesting.com", "welcome01");
     });
 
     it("User adds a product to the basket from product detail page", async () => {
