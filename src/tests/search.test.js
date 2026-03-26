@@ -4,7 +4,7 @@ const Search = require("../pageobjects/search.page");
 
 describe("Find Product for Exact Name", () => {
     beforeEach(async () => {
-        await loginPage.login("user@example.com", "Password123!");
+        await loginPage.login("customer2@practicesoftwaretesting.com", "welcome01");
     });
 
     it("User searches for a product by its exact name", async () => {
