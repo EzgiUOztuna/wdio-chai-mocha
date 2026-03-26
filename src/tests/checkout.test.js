@@ -5,7 +5,7 @@ const productDetailsPage = require("../pageobjects/product-details.page");
 
 describe("Complete Purchase Successfully", () => {
     beforeEach(async () => {
-        await loginPage.login("user@example.com", "Password123!");
+        await loginPage.login("customer2@practicesoftwaretesting.com", "welcome01");
     });
 
     it("User completes checkout with valid payment details", async () => {
@@ -30,11 +30,6 @@ describe("Complete Purchase Successfully", () => {
 
         await checkoutPage.goToCheckout();
         await checkoutPage.clickProceed();
-        await checkoutPage.continueGuest({
-            email: "test@mail.com",
-            firstName: "John",
-            lastName: "Doe"
-        });
         await checkoutPage.clickProceed2();
         await checkoutPage.address(userData);
         await checkoutPage.submit3();
