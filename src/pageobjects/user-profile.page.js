@@ -32,7 +32,6 @@ class UserProfile extends Page {
         await this.postalCodeInput.setValue(postalCode);
         await this.cityInput.setValue(city);
         await this.stateInput.setValue(state);
-        await this.countrySelect.setValue(country);
     }
 
     async updateProfileSubmit() {
