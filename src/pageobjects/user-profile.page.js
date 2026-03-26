@@ -15,14 +15,6 @@ class UserProfile extends Page {
     get passwordInput() { return $('[data-test="password"]'); }
     get submitButton() { return $('[data-test="login-submit"]'); }
 
-    async login({ email, password }) {
-        await browser.url("https://practicesoftwaretesting.com/auth/login");
-        await this.emailInput.setValue(email);
-        await this.passwordInput.setValue(password);
-        await this.submitButton.click();
-        await expect(browser).toHaveUrl("https://practicesoftwaretesting.com/account")
-    }
-
     async profilePage() {
         await this.profileButton.waitForDisplayed();
         await this.profileButton.waitForClickable();
