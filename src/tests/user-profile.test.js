@@ -3,15 +3,10 @@ const loginPage = require("../pageobjects/login.page");
 
 describe("User Update Information", () => {
     beforeEach(async () => {
-        await loginPage.login("user@example.com", "Password123!");
+        await loginPage.login("customer2@practicesoftwaretesting.com", "welcome01");
     });
     it("User updates profile information successfully.", async () => {
-        /*await UserProfile.login({
-            email: "userrr@example.com",
-            password: "Password123!"
-        });*/
-
-        /*await UserProfile.profilePage();
+        await UserProfile.profilePage();
         await UserProfile.navigateProfilePage();
         await UserProfile.phoneInput.waitForDisplayed();
         await UserProfile.change({
@@ -24,10 +19,6 @@ describe("User Update Information", () => {
         });
         await UserProfile.updateProfileSubmit();
         await UserProfile.alertMessage();
-        await browser.waitUntil(
-            async () => (await browser.getUrl()) === 'https://practicesoftwaretesting.com/account/profile', { timeout: 10000 }
-        );
-        const url = await browser.getUrl();
-        expect(url).to.equal('https://practicesoftwaretesting.com/account/profile');*/
+
     })
 });
