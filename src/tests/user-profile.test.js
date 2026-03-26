@@ -10,7 +10,7 @@ describe("User Update Information", () => {
         await UserProfile.navigateProfilePage();
         await UserProfile.phoneInput.waitForDisplayed();
         await UserProfile.change({
-            phoneNumber: "5555544554",
+            phoneNumber: "5557844554",
             street: "Atatürk Cd",
             postalCode: "35000",
             city: "Izmir",
