@@ -5,8 +5,9 @@ class Search {
     get searchSubmit() { return $('[data-test="search-submit"]'); }
     get searchResults() { return $$('h5[data-test="product-name"]'); }
 
-    async open() {
-        await browser.url('https://practicesoftwaretesting.com/');
+    async goToHomePage() {
+        await $('[data-test="nav-home"]').click();
+        await expect(browser).toHaveUrl('https://practicesoftwaretesting.com/');
     }
 
     async clickSearchInput() {
@@ -27,8 +28,7 @@ class Search {
 
     async verifyProductInResults(productName) {
         const results = await this.searchResults;
-        await expect(results).toHaveText(expect.stringContaining(productName));
-
+        await expect(results).toEqual(expect.arrayContaining([expect.stringContaining(productName)]));
     }
 }
 
