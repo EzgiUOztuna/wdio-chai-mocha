@@ -1,8 +1,8 @@
 const FavoriteProducts = require("../pageobjects/favorite-products.page");
-const { expect } = require('chai');
 const { login } = require("../pageobjects/login.page");
 const loginPage = require("../pageobjects/login.page");
 const productDetailsPage = require("../pageobjects/product-details.page");
+const { afterEach } = require("mocha");
 
 describe("Successful Adding Product to the Favorites", () => {
     beforeEach(async () => {
@@ -15,5 +15,6 @@ describe("Successful Adding Product to the Favorites", () => {
 
         await FavoriteProducts.clickFavoriteButton();
         await FavoriteProducts.successMessage('Product added to your favorites list.');
+        await FavoriteProducts.removeFavorites();
     });
 });
