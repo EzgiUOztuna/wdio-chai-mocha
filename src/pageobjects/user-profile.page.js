@@ -23,6 +23,7 @@ class UserProfile extends Page {
 
     async navigateProfilePage() {
         await browser.url("https://practicesoftwaretesting.com/account/profile")
+
     }
 
     async change({ phoneNumber, street, postalCode, city, state, country }) {
