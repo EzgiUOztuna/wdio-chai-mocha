@@ -8,13 +8,13 @@ describe("User Update Information", () => {
     it("User updates profile information successfully.", async () => {
         await UserProfile.profilePage();
         await UserProfile.navigateProfilePage();
-        await UserProfile.phoneInput.waitForDisplayed();
+        await UserProfile.emailInput.waitForDisplayed({ timeout: 8000 });
         await UserProfile.change({
-            phoneNumber: "5557844554",
-            street: "Atatürk Cd",
-            postalCode: "35000",
-            city: "Izmir",
-            state: "Ege"
+            phoneNumber: "5557414554",
+            street: "Frankfurt Cd",
+            postalCode: "12345",
+            city: "Frankfurt",
+            state: "Germany"
         });
         await UserProfile.updateProfileSubmit();
         await UserProfile.alertMessage();
