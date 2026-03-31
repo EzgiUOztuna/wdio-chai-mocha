@@ -8,7 +8,6 @@ describe("User Update Information", () => {
     it("User updates profile information successfully.", async () => {
         await UserProfile.profilePage();
         await UserProfile.navigateProfilePage();
-        await UserProfile.emailInput.waitForDisplayed({ timeout: 8000 });
         await UserProfile.change({
             phoneNumber: "5557414554",
             street: "Frankfurt Cd",
