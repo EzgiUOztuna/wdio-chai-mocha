@@ -26,8 +26,43 @@ class UserProfile extends Page {
 
     }
 
+    async waitForStableValue(element) {
+        await element.waitForDisplayed();
+
+        let previousValue;
+
+        await browser.waitUntil(
+            async () => {
+                const currentValue = await element.getValue();
+                const isStable = currentValue === previousValue;
+                previousValue = currentValue;
+
+                return isStable;
+            },
+            {
+                timeout: 5000,
+                interval: 300,
+                timeoutMsg: 'Element value did not stabilize'
+            }
+        );
+    }
+
+    async waitForFormReady() {
+        const inputs = [
+            this.phoneInput,
+            this.streetInput,
+            this.postalCodeInput,
+            this.cityInput,
+            this.stateInput
+        ];
+
+        for (const input of inputs) {
+            await this.waitForStableValue(input);
+        }
+    }
+
     async change({ phoneNumber, street, postalCode, city, state, country }) {
-        await this.phoneInput.waitForDisplayed();
+        await this.waitForFormReady();
         await this.phoneInput.setValue(phoneNumber);
         await this.streetInput.setValue(street);
         await this.postalCodeInput.setValue(postalCode);
