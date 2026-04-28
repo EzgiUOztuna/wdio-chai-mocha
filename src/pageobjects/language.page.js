@@ -1,14 +1,10 @@
-class Language {
+const Page = require("../core/page");
+
+class Language extends Page {
     get selectLanguage() { return $('[data-test="language-select"]'); }
     get trLang() { return $('[data-test="lang-tr"]'); }
     get homeButton() { return $('[data-test="nav-home"]'); }
     get categoriesButton() { return $('[data-test="nav-categories"]'); }
-
-
-    async goToHomePage() {
-        await this.homeButton.click();
-        await expect(browser).toHaveUrl('https://practicesoftwaretesting.com/');
-    }
 
     async openDropdown() {
         await this.selectLanguage.waitForDisplayed();
