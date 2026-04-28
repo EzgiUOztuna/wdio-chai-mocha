@@ -3,8 +3,10 @@ const loginPage = require("../pageobjects/login.page");
 
 describe("User Update Information", () => {
     beforeEach(async () => {
-        await loginPage.login("customer2@practicesoftwaretesting.com", "welcome01");
+        await browser.loginAsCustomer3();
+        await expect(browser).toHaveUrl('https://practicesoftwaretesting.com/account');
     });
+
     it("User updates profile information successfully.", async () => {
         await UserProfile.profilePage();
         await UserProfile.navigateProfilePage();
@@ -16,7 +18,10 @@ describe("User Update Information", () => {
             state: "Germany"
         });
         await UserProfile.updateProfileSubmit();
-        await UserProfile.alertMessage();
+
+        const alertSuccessMessage = await $('.alert.alert-success');
+        await expect(alertSuccessMessage).toBeDisplayed();
+        await expect(alertSuccessMessage).toHaveText('Profiliniz başarıyla güncellendi!');
 
     })
 });
