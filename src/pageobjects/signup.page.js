@@ -1,14 +1,9 @@
-const Page = require("./page");
+const Page = require("../core/page");
 
 class RegistrationPage extends Page {
     get firstNameInput() { return $('[data-test="first-name"]'); }
     get lastNameInput() { return $('[data-test="last-name"]'); }
     get dobInput() { return $('[data-test="dob"]'); }
-    get streetInput() { return $('[data-test="street"]'); }
-    get postalCodeInput() { return $('[data-test="postal_code"]'); }
-    get cityInput() { return $('[data-test="city"]'); }
-    get stateInput() { return $('[data-test="state"]'); }
-    get countrySelect() { return $('[data-test="country"]'); }
     get phoneInput() { return $('[data-test="phone"]'); }
     get emailInput() { return $('[data-test="email"]'); }
     get passwordInput() { return $('[data-test="password"]'); }
@@ -25,14 +20,6 @@ class RegistrationPage extends Page {
         await this.phoneInput.setValue(phoneNumber);
         await this.emailInput.setValue(email);
         await this.passwordInput.setValue(password);
-    }
-
-    async address({ street, postalCode, city, state, country }) {
-        await this.streetInput.setValue(street);
-        await this.postalCodeInput.setValue(postalCode);
-        await this.cityInput.setValue(city);
-        await this.stateInput.setValue(state);
-        await this.countrySelect.selectByVisibleText(country);
     }
 
     async fillForm(data) {
