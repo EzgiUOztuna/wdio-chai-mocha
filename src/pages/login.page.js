@@ -25,18 +25,6 @@ class Login extends BasePage {
     async submit() {
         await this.submitButton.click();
     }
-
-    async isErrorDisplayed() {
-        return this.errorMessage.isDisplayed();
-    }
-
-    async getErrorText() {
-        return this.errorMessage.getText();
-    }
-
-    async getCurrentUrl() {
-        return browser.getUrl();
-    }
 }
 
 module.exports = new Login();
