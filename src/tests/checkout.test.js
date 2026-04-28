@@ -34,9 +34,9 @@ describe("Complete Purchase Successfully", () => {
 
         await checkoutPage.goToCheckout();
         await checkoutPage.clickProceed();
-        await checkoutPage.clickProceedButtonSecond();
+        await checkoutPage.proceedToBillingAddress();
         await checkoutPage.address(userData);
-        await checkoutPage.submitButtonThird();
+        await checkoutPage.confirmPaymentMethod();
         await checkoutPage.paymentSelection({ paymentOption: 'credit-card' });
         await checkoutPage.creditCardInfo(cardData);
         await checkoutPage.submitPayment();
