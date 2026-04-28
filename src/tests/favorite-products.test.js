@@ -1,7 +1,7 @@
-const FavoriteProducts = require("../pageobjects/favorite-products.page");
-const { login } = require("../pageobjects/login.page");
-const loginPage = require("../pageobjects/login.page");
-const productDetailsPage = require("../pageobjects/product-details.page");
+const FavoriteProducts = require("../pages/favorite-products.page");
+const { login } = require("../pages/login.page");
+const loginPage = require("../pages/login.page");
+const productDetailsPage = require("../pages/product-details.page");
 
 describe("Successful Adding Product to the Favorites", () => {
     beforeEach(async () => {
