@@ -1,7 +1,7 @@
-const checkoutPage = require("../pageobjects/checkout.page");
-const loginPage = require("../pageobjects/login.page");
-const { login } = require("../pageobjects/login.page");
-const productDetailsPage = require("../pageobjects/product-details.page");
+const checkoutPage = require("../pages/checkout.page");
+const loginPage = require("../pages/login.page");
+const { login } = require("../pages/login.page");
+const productDetailsPage = require("../pages/product-details.page");
 
 describe("Complete Purchase Successfully", () => {
     beforeEach(async () => {
@@ -34,9 +34,9 @@ describe("Complete Purchase Successfully", () => {
 
         await checkoutPage.goToCheckout();
         await checkoutPage.clickProceed();
-        await checkoutPage.clickProceed2();
+        await checkoutPage.clickProceedButtonSecond();
         await checkoutPage.address(userData);
-        await checkoutPage.submit3();
+        await checkoutPage.submitButtonThird();
         await checkoutPage.paymentSelection({ paymentOption: 'credit-card' });
         await checkoutPage.creditCardInfo(cardData);
         await checkoutPage.submitPayment();
