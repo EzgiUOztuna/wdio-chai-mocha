@@ -1,5 +1,5 @@
-const loginPage = require("../pageobjects/login.page");
-const productDetailsPage = require("../pageobjects/product-details.page");
+const loginPage = require("../pages/login.page");
+const productDetailsPage = require("../pages/product-details.page");
 
 describe("Add Product to the Basket", () => {
     beforeEach(async () => {
