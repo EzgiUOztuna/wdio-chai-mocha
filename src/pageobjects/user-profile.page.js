@@ -1,5 +1,5 @@
 const { $, expect, browser } = require("@wdio/globals");
-const Page = require("./page");
+const Page = require("../core/page");
 
 class UserProfile extends Page {
     get profileButton() { return $('a[data-test="nav-profile"]'); }
@@ -10,7 +10,6 @@ class UserProfile extends Page {
     get stateInput() { return $('[data-test="state"]'); }
     get countrySelect() { return $('[data-test="country"]'); }
     get updateProfile() { return $('[data-test="update-profile-submit"]'); }
-    get alertSuccessMessage() { return $('.alert.alert-success'); }
     get emailInput() { return $('[data-test="email"]'); }
     get passwordInput() { return $('[data-test="password"]'); }
     get submitButton() { return $('[data-test="login-submit"]'); }
@@ -72,11 +71,6 @@ class UserProfile extends Page {
 
     async updateProfileSubmit() {
         await this.updateProfile.click();
-    }
-
-    async alertMessage() {
-        await expect(this.alertSuccessMessage).toBeDisplayed();
-        await expect(this.alertSuccessMessage).toHaveText('Profiliniz başarıyla güncellendi!');
     }
 }
 
