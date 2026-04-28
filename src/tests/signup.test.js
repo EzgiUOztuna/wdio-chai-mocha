@@ -11,9 +11,10 @@ describe("User Registration", () => {
             birthDate: "1996-03-28",
             street: "Atatürk Caddesi",
             postalCode: "34000",
+            houseNumber: "42",
             city: "Istanbul",
             state: "Marmara",
-            country: "Turkey",
+            country: "TR",
             phoneNumber: "5555555555",
             email: `ezgi_${Date.now()}@mail.com`,
             password: "21112025*Epam"
