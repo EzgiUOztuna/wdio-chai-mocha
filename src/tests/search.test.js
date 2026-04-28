@@ -1,6 +1,6 @@
-const loginPage = require("../pageobjects/login.page");
-const searchPage = require("../pageobjects/search.page");
-const Search = require("../pageobjects/search.page");
+const loginPage = require("../pages/login.page");
+const searchPage = require("../pages/search.page");
+const Search = require("../pages/search.page");
 
 describe("Find Product for Exact Name", () => {
     beforeEach(async () => {
