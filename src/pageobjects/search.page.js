@@ -1,14 +1,10 @@
 const { browser, expect } = require("@wdio/globals");
+const Page = require("../core/page");
 
-class Search {
+class Search extends Page {
     get searchInput() { return $('[data-test="search-query"]'); }
     get searchSubmit() { return $('[data-test="search-submit"]'); }
     get searchResults() { return $$('h5[data-test="product-name"]'); }
-
-    async goToHomePage() {
-        await $('[data-test="nav-home"]').click();
-        await expect(browser).toHaveUrl('https://practicesoftwaretesting.com/');
-    }
 
     async clickSearchInput() {
         const input = await this.searchInput;
