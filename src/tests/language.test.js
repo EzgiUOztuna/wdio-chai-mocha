@@ -1,5 +1,5 @@
-const Language = require("../pageobjects/language.page");
-const loginPage = require("../pageobjects/login.page");
+const Language = require("../pages/language.page");
+const loginPage = require("../pages/login.page");
 
 describe("Switch from English to Turkish", () => {
     beforeEach(async () => {
