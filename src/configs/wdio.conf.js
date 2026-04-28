@@ -1,3 +1,5 @@
+const loginPage = require('../pageobjects/login.page');
+
 exports.config = {
     //
     // ====================
@@ -5,6 +7,16 @@ exports.config = {
     // ====================
     // WebdriverIO supports running e2e tests as well as unit and component tests.
     runner: 'local',
+    before: function (capabilities, specs) {
+
+        browser.addCommand('loginAsCustomer3', async () => {
+            await loginPage.login(
+                "customer3@practicesoftwaretesting.com",
+                "pass123"
+            );
+        });
+
+    },
     //
     // ==================
     // Specify Test Files
