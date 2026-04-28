@@ -1,4 +1,4 @@
-const RegistrationPage = require('../pageobjects/signup.page');
+const RegistrationPage = require('../pages/signup.page');
 const { expect } = require('chai');
 
 describe("User Registration", () => {
