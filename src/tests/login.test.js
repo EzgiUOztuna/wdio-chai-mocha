@@ -1,15 +1,10 @@
-const Login = require('../pageobjects/login.page');
+const Login = require('../pages/login.page');
 const { expect } = require('chai');
 
 describe("User Login", () => {
-    it("should register the user with invalid information", async () => {
+    it("should show error for invalid credentials", async () => {
         await Login.open();
-
-        const userData = {
-            email: `wrong@mail.com`,
-            password: "WrongPass123!"
-        }
-        await Login.fillData(userData);
+        await Login.fillData({ email: 'wrong@mail.com', password: 'WrongPass123!' });
         await Login.submit();
 
         const errorMessage = await $('[data-test="login-error"]');
