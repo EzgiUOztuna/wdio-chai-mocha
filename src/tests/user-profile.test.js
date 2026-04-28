@@ -1,5 +1,5 @@
-const UserProfile = require('../pageobjects/user-profile.page');
-const loginPage = require("../pageobjects/login.page");
+const UserProfile = require('../pages/user-profile.page');
+const loginPage = require("../pages/login.page");
 
 describe("User Update Information", () => {
     beforeEach(async () => {
