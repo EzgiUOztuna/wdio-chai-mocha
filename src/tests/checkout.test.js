@@ -5,16 +5,18 @@ const productDetailsPage = require("../pageobjects/product-details.page");
 
 describe("Complete Purchase Successfully", () => {
     beforeEach(async () => {
-        await loginPage.login("customer2@practicesoftwaretesting.com", "welcome01");
+        await browser.loginAsCustomer3();
+        await expect(browser).toHaveUrl('https://practicesoftwaretesting.com/account');
     });
 
     it("User completes checkout with valid payment details", async () => {
         const userData = {
+            country: "TR",
+            postalCode: "34000",
+            houseNumber: "42",
             street: "Atatürk Caddesi",
             city: "Istanbul",
             state: "Marmara",
-            country: "Turkey",
-            postalCode: "34000"
         };
 
         const cardData = {
@@ -23,6 +25,8 @@ describe("Complete Purchase Successfully", () => {
             CVV: '123',
             cardHolderName: 'John Doe'
         };
+
+        const paymentSuccess = await $('[data-test="payment-success-message"]');
 
         await productDetailsPage.goToHomePage();
         await productDetailsPage.clickProduct();
@@ -36,6 +40,7 @@ describe("Complete Purchase Successfully", () => {
         await checkoutPage.paymentSelection({ paymentOption: 'credit-card' });
         await checkoutPage.creditCardInfo(cardData);
         await checkoutPage.submitPayment();
-        await checkoutPage.successMessage();
+        await expect(paymentSuccess).toBeDisplayed();
+        await expect(paymentSuccess).toHaveText('Payment was successful');
     });
 });
