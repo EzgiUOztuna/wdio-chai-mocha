@@ -2,7 +2,7 @@ const BasePage = require('../core/base-page');
 const { expect, browser } = require("@wdio/globals");
 
 class Checkout extends BasePage {
-    get proceedBtnThird() { return $('[data-test="proceed-3"]'); }
+    get proceedToPaymentButton() { return $('[data-test="proceed-3"]'); }
     get paymentSelect() { return $('[data-test="payment-method"]'); }
     get cardNumber() { return $('[data-test="credit_card_number"]'); }
     get expirationDate() { return $('[data-test="expiration_date"]'); }
@@ -22,14 +22,14 @@ class Checkout extends BasePage {
         await proceedButton.click();
     }
 
-    async clickProceedButtonSecond() {
+    async proceedToBillingAddress() {
         const proceedButton = await $('button[data-test="proceed-2"]');
         await proceedButton.waitForExist();
         await proceedButton.click();
     }
 
-    async submitButtonThird() {
-        await this.proceedBtnThird.click();
+    async confirmPaymentMethod() {
+        await this.proceedToPaymentButton.click();
     }
 
     async paymentSelection({ paymentOption }) {
