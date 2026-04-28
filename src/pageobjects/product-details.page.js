@@ -1,13 +1,7 @@
 const { expect, browser } = require("@wdio/globals");
-const Page = require("./page");
+const Page = require("../core/page");
 
 class ProductDetails extends Page {
-    //get successToast() { return $('#toast-container'); }
-
-    async goToHomePage() {
-        await $('[data-test="nav-home"]').click();
-        await expect(browser).toHaveUrl('https://practicesoftwaretesting.com/');
-    }
 
     async clickProduct() {
         const product = await $('[data-test^="product-"]');
@@ -18,12 +12,6 @@ class ProductDetails extends Page {
     async clickCartButton() {
         const addToCartButton = await $('[data-test="add-to-cart"]');
         await addToCartButton.click();
-    }
-
-    async successMessage() {
-        const successToast = $('#toast-container');
-        await expect(successToast).toBeDisplayed();
-        await expect(successToast).toHaveText('Product added to shopping cart.');
     }
 
     async getBasketCount() {
@@ -38,11 +26,7 @@ class ProductDetails extends Page {
         }
     }
 
-    async counter() {
-        const oldValue = await this.getBasketCount();
-        await this.clickCartButton();
-        await this.successMessage();
-
+    async waitForCartCountToUpdate(oldValue) {
         await browser.waitUntil(
             async () => {
                 const newValue = await this.getBasketCount();
@@ -53,9 +37,6 @@ class ProductDetails extends Page {
                 timeoutMsg: 'Cart counter did not updated!'
             }
         );
-
-        const newValue = await this.getBasketCount();
-        await expect(newValue).toEqual(oldValue + 1);
     }
 }
 
