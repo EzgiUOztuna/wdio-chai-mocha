@@ -1,4 +1,4 @@
-const loginPage = require('../pageobjects/login.page');
+const loginPage = require('../pages/login.page');
 
 exports.config = {
     //
@@ -11,8 +11,8 @@ exports.config = {
 
         browser.addCommand('loginAsCustomer3', async () => {
             await loginPage.login(
-                "customer3@practicesoftwaretesting.com",
-                "pass123"
+                "customer2@practicesoftwaretesting.com",
+                "welcome01"
             );
         });
 
