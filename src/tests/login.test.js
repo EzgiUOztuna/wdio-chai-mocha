@@ -11,7 +11,11 @@ describe("User Login", () => {
         }
         await Login.fillData(userData);
         await Login.submit();
-        await Login.loginError();
+
+        const errorMessage = await $('[data-test="login-error"]');
+        await errorMessage.waitForDisplayed();
+        expect(await errorMessage.isDisplayed()).to.be.true;
+        expect(await errorMessage.getText()).to.equal('Invalid email or password');
 
         await browser.waitUntil(
             async () => (await browser.getUrl()) === 'https://practicesoftwaretesting.com/auth/login'
@@ -19,4 +23,5 @@ describe("User Login", () => {
         const url = await browser.getUrl();
         expect(url).to.equal('https://practicesoftwaretesting.com/auth/login');
     })
+
 });
