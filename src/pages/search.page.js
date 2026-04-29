@@ -23,8 +23,15 @@ class Search extends BasePage {
     }
 
     async verifyProductInResults(productName) {
-        const results = await Promise.all(await this.searchResults.map(async (el) => await el.getText()));
-        await expect(results).toContain(productName);
+        await browser.waitUntil(async () => {
+            const results = await Promise.all(
+                await this.searchResults.map(async (el) => await el.getText())
+            );
+            return results.includes(productName);
+        }, {
+            timeout: 5000,
+            timeoutMsg: `Expected product "${productName}" not found in search results after 5 seconds`
+        });
     }
 }
 
