@@ -11,8 +11,8 @@ exports.config = {
 
         browser.addCommand('loginAsCustomer3', async () => {
             await loginPage.login(
-                "customer2@practicesoftwaretesting.com",
-                "welcome01"
+                "customer3@practicesoftwaretesting.com",
+                "pass123"
             );
         });
 
