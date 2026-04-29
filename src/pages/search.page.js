@@ -23,8 +23,8 @@ class Search extends BasePage {
     }
 
     async verifyProductInResults(productName) {
-        const results = await this.searchResults;
-        await expect(results).toEqual(expect.arrayContaining([expect.stringContaining(productName)]));
+        const results = await Promise.all(await this.searchResults.map(async (el) => await el.getText()));
+        await expect(results).toContain(productName);
     }
 }
 
